@@ -268,11 +268,12 @@ function render() {
   $("#companyTitle").textContent = state.data.settings.companyName;
   document.title = state.data.settings.companyName;
   $("#roleBadge").textContent = state.role === "admin" ? "Admin" : state.role === "employee" ? state.employee.name : "Nicht angemeldet";
+  document.body.classList.toggle("role-admin", state.role === "admin");
+  document.body.classList.toggle("role-employee", state.role === "employee");
   $$(".admin-only").forEach((item) => item.classList.toggle("hidden", state.role !== "admin"));
   $("#companyName").value = state.data.settings.companyName;
   $("#includeHolidayLikeDays").checked = Boolean(state.data.settings.includeHolidayLikeDays);
   renderAlerts();
-  renderDashboard();
   renderEmployeeSelect();
   renderCalendar();
   renderSummary();
@@ -418,6 +419,21 @@ function renderDay(date) {
 function renderSummary() {
   const cards = $("#summaryCards");
   const rows = state.role === "employee" ? state.data.summary.employees.filter((item) => item.employeeId === state.employee.id) : state.data.summary.employees;
+  if (state.role === "employee") {
+    cards.innerHTML = rows
+      .map(
+        (row) => `
+          <article class="summary-card employee-balance-card">
+            <span>Noch verfügbar</span>
+            <strong>${row.remainingAnnual} Tage</strong>
+            <span>Genutzt: ${row.used} Tage</span>
+            ${row.remainingCarry > 0 ? `<span class="warn">Übertrag offen: ${row.remainingCarry} Tage bis 31.03.</span>` : ""}
+          </article>
+        `
+      )
+      .join("");
+    return;
+  }
   cards.innerHTML = rows
     .map(
       (row) => `

@@ -11,7 +11,7 @@
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/icon.svg" />
-    <link rel="stylesheet" href="/styles.css?v=8" />
+    <link rel="stylesheet" href="/styles.css?v=9" />
   </head>
   <body>
     <div class="app-frame">
@@ -74,11 +74,6 @@
         <section id="workspace" class="workspace hidden">
           <section id="alerts" class="alerts"></section>
 
-          <section class="dashboard-strip">
-            <div id="dashboardStats" class="stat-grid"></div>
-            <aside id="todayPanel" class="today-panel"></aside>
-          </section>
-
           <section id="tab-plan" class="tab-view">
             <div class="viewbar">
               <div>
@@ -120,7 +115,7 @@
 
                 <div class="tool-card">
                   <span class="section-label">Saldo</span>
-                  <h2>Ferientage</h2>
+                  <h2>Resttage</h2>
                   <div id="summaryCards" class="summary-cards"></div>
                 </div>
               </div>
@@ -128,7 +123,7 @@
               <div class="table-card">
                 <div class="card-title">
                   <span class="section-label">Liste</span>
-                  <h2>Ferieneinträge</h2>
+                  <h2>Erfasste Ferien</h2>
                 </div>
                 <div id="vacationList" class="list"></div>
               </div>
@@ -193,6 +188,6 @@
     <section id="printView" class="print-view"></section>
     <div id="toast" class="toast" role="status"></div>
 
-    <script src="/app.js?v=8" defer></script>
+    <script src="/app.js?v=9" defer></script>
   </body>
 </html>

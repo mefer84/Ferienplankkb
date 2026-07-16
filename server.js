@@ -8,6 +8,20 @@ const PORT = process.env.PORT || 3000;
 const DATA_DIR = process.env.VERCEL ? path.join("/tmp", "ferienplan") : path.join(__dirname, "data");
 const DATA_FILE = path.join(DATA_DIR, "ferienplan.json");
 const sessions = new Map();
+const EMPLOYEE_COLORS = [
+  "#004889",
+  "#c2410c",
+  "#047857",
+  "#7c3aed",
+  "#be123c",
+  "#0f766e",
+  "#4338ca",
+  "#b45309",
+  "#0369a1",
+  "#a21caf",
+  "#4d7c0f",
+  "#dc2626"
+];
 
 const todayYear = new Date().getFullYear();
 
@@ -65,6 +79,10 @@ function sanitizeEmployee(employee) {
     color: employee.color || "#2563eb",
     active: employee.active !== false
   };
+}
+
+function colorForEmployee(index) {
+  return EMPLOYEE_COLORS[index % EMPLOYEE_COLORS.length];
 }
 
 function isIsoDate(value) {
@@ -240,8 +258,9 @@ function publicData(data, year = todayYear, options = {}) {
       includeHolidayLikeDays: data.settings.includeHolidayLikeDays
     },
     employees: includeVacations
-      ? data.employees.map((employee) => {
+      ? data.employees.map((employee, index) => {
           const clean = sanitizeEmployee(employee);
+          clean.color = colorForEmployee(index);
           if (!includeLoginCodes) delete clean.loginCode;
           return clean;
         })
@@ -355,7 +374,7 @@ app.post("/api/admin/employees", requireAdmin, (req, res) => {
     vacationDays: clamp(Number(req.body.vacationDays || 25), 25, 30),
     carryoverDays: clamp(Number(req.body.carryoverDays || 0), 0, 5),
     loginCode: makeLoginCode(data, req.body.name),
-    color: req.body.color || randomColor(),
+    color: colorForEmployee(data.employees.length),
     active: true
   });
   if (!employee.name) return res.status(400).json({ error: "Name fehlt." });
@@ -486,7 +505,7 @@ function makeLoginCode(data, name) {
 }
 
 function randomColor() {
-  return ["#0f766e", "#2563eb", "#7c3aed", "#c2410c", "#be123c", "#047857", "#4338ca"][Math.floor(Math.random() * 7)];
+  return EMPLOYEE_COLORS[Math.floor(Math.random() * EMPLOYEE_COLORS.length)];
 }
 
 ensureDataFile();
