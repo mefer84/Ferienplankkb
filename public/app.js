@@ -14,7 +14,7 @@ const $$ = (selector) => Array.from(document.querySelectorAll(selector));
 const monthNames = [
   "Januar",
   "Februar",
-  "Maerz",
+  "März",
   "April",
   "Mai",
   "Juni",
@@ -136,7 +136,7 @@ async function adminLogin(event) {
   $("#workspace").classList.remove("hidden");
   $("#logoutButton").classList.remove("hidden");
   showTab("plan");
-  toast("Admin geoeffnet.");
+  toast("Admin geöffnet.");
   render();
 }
 
@@ -189,7 +189,7 @@ async function saveEmployee(event) {
   event.target.reset();
   $("#employeeDays").value = 25;
   $("#employeeCarry").value = 0;
-  toast("Mitarbeiter hinzugefuegt.");
+  toast("Mitarbeiter hinzugefügt.");
   render();
 }
 
@@ -303,7 +303,7 @@ function renderDashboard() {
     statCard("Mitarbeitende", state.role === "admin" ? employees.length : state.role === "employee" ? 1 : 0, "aktive Personen"),
     statCard("Ferientage genutzt", used, `${state.year}`),
     statCard("Resttage", remaining, "Jahresferien"),
-    statCard("Warnungen", conflictCount, openCarry ? `${openCarry} Uebertrag offen` : "keine Uebertraege")
+    statCard("Warnungen", conflictCount, openCarry ? `${openCarry} Übertrag offen` : "keine Überträge")
   ].join("");
 
   const employeeById = new Map(state.data.employees.map((employee) => [employee.id, employee]));
@@ -318,7 +318,7 @@ function renderDashboard() {
     <span class="section-label">Heute</span>
     <h2>${formatDate(today)}</h2>
     <div class="today-list">${todayLines}</div>
-    ${nextHoliday ? `<div class="today-line"><span>Naechster Feiertag</span><strong>${formatDate(nextHoliday.date)}</strong></div>` : ""}
+    ${nextHoliday ? `<div class="today-line"><span>Nächster Feiertag</span><strong>${formatDate(nextHoliday.date)}</strong></div>` : ""}
   `;
 }
 
@@ -350,7 +350,7 @@ function renderAlerts() {
     const names = item.conflicts.map((conflict) => conflict.employeeName).join(", ");
     alerts.insertAdjacentHTML(
       "beforeend",
-      `<div class="alert">Ueberschneidung: ${escapeHtml(item.employeeName)} (${formatDate(item.startDate)} - ${formatDate(
+      `<div class="alert">Überschneidung: ${escapeHtml(item.employeeName)} (${formatDate(item.startDate)} - ${formatDate(
         item.endDate
       )}) mit ${escapeHtml(names)}</div>`
     );
@@ -425,10 +425,10 @@ function renderSummary() {
           <strong>${escapeHtml(row.name)}</strong>
           <span>Ferien genutzt: ${row.used} Tage</span>
           <span>Rest Jahresferien: ${row.remainingAnnual} Tage</span>
-          <span>Uebertrag offen: ${row.remainingCarry} Tage</span>
+          <span>Übertrag offen: ${row.remainingCarry} Tage</span>
           ${
             row.remainingCarry > 0
-              ? `<span class="warn">Uebertrag bis 31.03. beziehen</span>`
+              ? `<span class="warn">Übertrag bis 31.03. beziehen</span>`
               : ""
           }
         </article>
@@ -444,7 +444,7 @@ function renderVacationList() {
     .filter((vacation) => state.role === "admin" || vacation.employeeId === state.employee.id)
     .sort((a, b) => a.startDate.localeCompare(b.startDate));
   if (!vacations.length) {
-    list.innerHTML = `<div class="row"><div>Noch keine Ferieneintraege.</div></div>`;
+    list.innerHTML = `<div class="row"><div>Noch keine Ferieneinträge.</div></div>`;
     return;
   }
   list.innerHTML = vacations
@@ -457,7 +457,7 @@ function renderVacationList() {
             <div class="row-meta">${formatDate(vacation.startDate)} - ${formatDate(vacation.endDate)}${vacation.note ? ` · ${escapeHtml(vacation.note)}` : ""}</div>
           </div>
           <div class="row-actions">
-            <button class="danger" onclick="deleteVacation('${vacation.id}')">Loeschen</button>
+            <button class="danger" onclick="deleteVacation('${vacation.id}')">Löschen</button>
           </div>
         </article>
       `;
@@ -475,7 +475,7 @@ function renderEmployees() {
         <article class="row">
           <div>
             <div class="row-title"><span class="swatch" style="background:${employee.color}"></span>${escapeHtml(employee.name)}</div>
-            <div class="row-meta">Code: ${escapeHtml(employee.loginCode)} · ${employee.vacationDays} Ferientage · ${employee.carryoverDays} Tage Uebertrag</div>
+            <div class="row-meta">Code: ${escapeHtml(employee.loginCode)} · ${employee.vacationDays} Ferientage · ${employee.carryoverDays} Tage Übertrag</div>
           </div>
           <div class="row-actions">
             <button class="secondary" onclick="editEmployeeById('${employee.id}')">Bearbeiten</button>
@@ -497,7 +497,7 @@ function editEmployee(employee) {
   if (name === null) return;
   const vacationDays = Number(prompt("Ferientage pro Jahr (25-30)", employee.vacationDays));
   if (Number.isNaN(vacationDays)) return;
-  const carryoverDays = Number(prompt("Uebertrag aus Vorjahr (0-5)", employee.carryoverDays));
+  const carryoverDays = Number(prompt("Übertrag aus Vorjahr (0-5)", employee.carryoverDays));
   if (Number.isNaN(carryoverDays)) return;
   const loginCode = prompt("Login-Code", employee.loginCode);
   if (loginCode === null) return;
@@ -531,13 +531,13 @@ function buildPrintView() {
     .join("");
   const holidayRows = state.data.holidays
     .filter((holiday) => holiday.date.startsWith(String(state.year)))
-    .map((holiday) => `${formatDate(holiday.date)} ${escapeHtml(holiday.name)}${holiday.type === "holidayLike" ? " (feiertagsaehnlich)" : ""}`)
+    .map((holiday) => `${formatDate(holiday.date)} ${escapeHtml(holiday.name)}${holiday.type === "holidayLike" ? " (feiertagsähnlich)" : ""}`)
     .join(", ");
   $("#printView").innerHTML = `
     <div class="print-header">
       <div>
         <h1>${escapeHtml(state.data.settings.companyName)}</h1>
-        <strong>Ferienuebersicht ${state.year} · ${periodLabel}</strong>
+        <strong>Ferienübersicht ${state.year} · ${periodLabel}</strong>
       </div>
       <div>Baar<br>${new Date().toLocaleDateString("de-CH")}</div>
     </div>
@@ -546,7 +546,7 @@ function buildPrintView() {
         <tr>
           <th>Mitarbeiter</th>
           <th>Jahresferien</th>
-          <th>Uebertrag</th>
+          <th>Übertrag</th>
           <th>Genutzt</th>
           <th>Rest</th>
           <th>Ferien</th>
@@ -591,7 +591,7 @@ function buildPrintView() {
     .join("");
   const holidayRows = state.data.holidays
     .filter((holiday) => holiday.date.startsWith(String(state.year)))
-    .map((holiday) => `${formatDate(holiday.date)} ${escapeHtml(holiday.name)}${holiday.type === "holidayLike" ? " (feiertagsaehnlich)" : ""}`)
+    .map((holiday) => `${formatDate(holiday.date)} ${escapeHtml(holiday.name)}${holiday.type === "holidayLike" ? " (feiertagsähnlich)" : ""}`)
     .join(", ");
   $("#printView").innerHTML = `
     <section class="print-page print-year-page">
@@ -599,7 +599,7 @@ function buildPrintView() {
         <img class="print-logo" src="/assets/wortmarke.png" alt="Pfarrei St. Wendelin Allenwinden">
         <div class="print-title">
           <h1>Ferienplan ${state.year}</h1>
-          <strong>Jahresuebersicht mit Ferien, Feiertagen und Ueberschneidungen</strong>
+          <strong>Jahresübersicht mit Ferien, Feiertagen und Überschneidungen</strong>
         </div>
         <div class="print-meta">Baar<br>${new Date().toLocaleDateString("de-CH")}</div>
       </div>
@@ -611,8 +611,8 @@ function buildPrintView() {
       <div class="print-legend">
         ${legend}
         <div class="print-legend-item"><span class="print-swatch holiday"></span><span>gesetzlicher Feiertag</span></div>
-        <div class="print-legend-item"><span class="print-swatch holiday-like"></span><span>feiertagsaehnlicher Tag</span></div>
-        <div class="print-legend-item"><span class="print-swatch conflict"></span><span>Ueberschneidung</span></div>
+        <div class="print-legend-item"><span class="print-swatch holiday-like"></span><span>feiertagsähnlicher Tag</span></div>
+        <div class="print-legend-item"><span class="print-swatch conflict"></span><span>Überschneidung</span></div>
       </div>
     </section>
 
@@ -620,7 +620,7 @@ function buildPrintView() {
       <div class="print-header compact">
         <img class="print-logo small" src="/assets/wortmarke.png" alt="Pfarrei St. Wendelin Allenwinden">
         <div>
-          <h1>Ferienuebersicht ${state.year}</h1>
+          <h1>Ferienübersicht ${state.year}</h1>
           <strong>Saldo und Detaildaten</strong>
         </div>
         <div class="print-meta">Baar<br>${new Date().toLocaleDateString("de-CH")}</div>
@@ -630,7 +630,7 @@ function buildPrintView() {
           <tr>
             <th>Mitarbeiter</th>
             <th>Jahresferien</th>
-            <th>Uebertrag</th>
+            <th>Übertrag</th>
             <th>Genutzt</th>
             <th>Rest</th>
             <th>Ferien</th>
@@ -707,7 +707,7 @@ function shortHolidayName(name) {
     "Bundesfeiertag": "1. Aug.",
     "Maria Himmelfahrt": "M. Himm.",
     "Allerheiligen": "Allerh.",
-    "Maria Empfaengnis": "M. Empf.",
+    "Maria Empfängnis": "M. Empf.",
     "Weihnachten": "Weihn.",
     "Berchtoldstag": "Bercht.",
     "Ostermontag": "OsterM",

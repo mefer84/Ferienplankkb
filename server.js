@@ -113,7 +113,7 @@ function holidaysForYear(year, includeHolidayLikeDays) {
     ["Bundesfeiertag", `${year}-08-01`],
     ["Maria Himmelfahrt", `${year}-08-15`],
     ["Allerheiligen", `${year}-11-01`],
-    ["Maria Empfaengnis", `${year}-12-08`],
+    ["Maria Empfängnis", `${year}-12-08`],
     ["Weihnachten", `${year}-12-25`]
   ].map(([name, date]) => ({ name, date, type: "official" }));
 
@@ -412,7 +412,7 @@ app.post("/api/vacations", (req, res) => {
   const startDate = req.body.startDate;
   const endDate = req.body.endDate;
   if (!isIsoDate(startDate) || !isIsoDate(endDate) || startDate > endDate) {
-    return res.status(400).json({ error: "Bitte gueltiges Start- und Enddatum erfassen." });
+    return res.status(400).json({ error: "Bitte gültiges Start- und Enddatum erfassen." });
   }
 
   const vacation = {
@@ -443,7 +443,7 @@ app.put("/api/vacations/:id", (req, res) => {
   if (req.body.startDate) vacation.startDate = req.body.startDate;
   if (req.body.endDate) vacation.endDate = req.body.endDate;
   if (!isIsoDate(vacation.startDate) || !isIsoDate(vacation.endDate) || vacation.startDate > vacation.endDate) {
-    return res.status(400).json({ error: "Bitte gueltiges Start- und Enddatum erfassen." });
+    return res.status(400).json({ error: "Bitte gültiges Start- und Enddatum erfassen." });
   }
   vacation.note = String(req.body.note || vacation.note || "").trim().slice(0, 160);
   writeData(data);
@@ -493,8 +493,8 @@ ensureDataFile();
 
 if (require.main === module) {
   app.listen(PORT, () => {
-    console.log(`Ferienplan laeuft auf http://localhost:${PORT}`);
-    console.log("Erster Admin-Login: Passwort admin123 (bitte im Admin-Bereich aendern).");
+    console.log(`Ferienplan läuft auf http://localhost:${PORT}`);
+    console.log("Erster Admin-Login: Passwort admin123 (bitte im Admin-Bereich ändern).");
   });
 }
 

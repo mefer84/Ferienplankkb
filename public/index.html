@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Ferienplan Baar</title>
     <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="stylesheet" href="/styles.css?v=5" />
+    <link rel="stylesheet" href="/styles.css?v=6" />
   </head>
   <body>
     <div class="app-frame">
@@ -47,7 +47,7 @@
           <form id="employeeLogin" class="auth-card">
             <span class="auth-kicker">Mitarbeiter</span>
             <h2>Ferien erfassen</h2>
-            <p>Code eingeben, Zeitraum waehlen, fertig.</p>
+            <p>Code eingeben, Zeitraum wählen, fertig.</p>
             <label class="field">
               <span>Login-Code</span>
               <input id="employeeCode" autocomplete="one-time-code" placeholder="z.B. MAX123" />
@@ -63,7 +63,7 @@
               <span>Passwort</span>
               <input id="adminPassword" type="password" autocomplete="current-password" placeholder="admin123" />
             </label>
-            <button class="button primary" type="submit">Admin oeffnen</button>
+            <button class="button primary" type="submit">Admin öffnen</button>
           </form>
         </section>
 
@@ -79,7 +79,7 @@
             <div class="viewbar">
               <div>
                 <span class="section-label">Kalender</span>
-                <h2>Jahresuebersicht</h2>
+                <h2>Jahresübersicht</h2>
               </div>
               <div class="segmented">
                 <button class="period active" data-period="year">Jahr</button>
@@ -126,7 +126,7 @@
             <div class="table-card">
               <div class="card-title">
                 <span class="section-label">Liste</span>
-                <h2>Ferieneintraege</h2>
+                <h2>Ferieneinträge</h2>
               </div>
               <div id="vacationList" class="list"></div>
             </div>
@@ -147,11 +147,11 @@
                     <input id="employeeDays" type="number" min="25" max="30" value="25" />
                   </label>
                   <label class="field">
-                    <span>Uebertrag</span>
+                    <span>Übertrag</span>
                     <input id="employeeCarry" type="number" min="0" max="5" value="0" />
                   </label>
                 </div>
-                <button class="button primary" type="submit">Hinzufuegen</button>
+                <button class="button primary" type="submit">Hinzufügen</button>
               </form>
 
               <div class="table-card">
@@ -174,11 +174,11 @@
               </label>
               <label class="check-row">
                 <input id="includeHolidayLikeDays" type="checkbox" />
-                <span>Feiertagsaehnliche Tage als frei zaehlen</span>
+                <span>Feiertagsähnliche Tage als frei zählen</span>
               </label>
               <label class="field">
                 <span>Neues Admin-Passwort</span>
-                <input id="newPassword" type="password" placeholder="leer lassen, wenn unveraendert" />
+                <input id="newPassword" type="password" placeholder="leer lassen, wenn unverändert" />
               </label>
               <button class="button primary" type="submit">Speichern</button>
             </form>
@@ -190,6 +190,6 @@
     <section id="printView" class="print-view"></section>
     <div id="toast" class="toast" role="status"></div>
 
-    <script src="/app.js?v=5" defer></script>
+    <script src="/app.js?v=6" defer></script>
   </body>
 </html>

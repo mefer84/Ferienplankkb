@@ -2,7 +2,7 @@
   "name": "ferienplan-baar",
   "version": "1.0.0",
   "private": true,
-  "description": "Einfacher Ferienplan fuer Mitarbeitende mit Admin-Ansicht, Baarer Feiertagen und PDF-Druck.",
+  "description": "Einfacher Ferienplan für Mitarbeitende mit Admin-Ansicht, Baarer Feiertagen und PDF-Druck.",
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js"
