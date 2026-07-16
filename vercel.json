@@ -2,10 +2,7 @@
   "version": 2,
   "functions": {
     "api/index.js": {
-      "includeFiles": [
-        "public/**",
-        "wortmarke_3.png"
-      ]
+      "includeFiles": "{public/**,wortmarke_3.png}"
     }
   },
   "rewrites": [
