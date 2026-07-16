@@ -78,7 +78,7 @@ async function restoreSession() {
     $("#loginPanel").classList.add("hidden");
     $("#workspace").classList.remove("hidden");
     $("#logoutButton").classList.remove("hidden");
-    showTab(payload.role === "admin" ? "plan" : "entries");
+    showTab("plan");
     render();
   } catch {
     await loadPublic();
@@ -115,7 +115,7 @@ async function employeeLogin(event) {
   $("#loginPanel").classList.add("hidden");
   $("#workspace").classList.remove("hidden");
   $("#logoutButton").classList.remove("hidden");
-  showTab("entries");
+  showTab("plan");
   toast(`Willkommen, ${state.employee.name}.`);
   render();
 }
@@ -715,6 +715,53 @@ function shortHolidayName(name) {
     "Stefanstag": "Stefan"
   };
   return map[name] || name;
+}
+
+function buildPrintView() {
+  const employees = state.data.employees.filter((employee) => employee.active);
+  const employeeById = new Map(employees.map((employee) => [employee.id, employee]));
+  const yearVacations = state.data.vacations.filter((vacation) => vacation.startDate <= `${state.year}-12-31` && vacation.endDate >= `${state.year}-01-01`);
+  const legend = employees
+    .map(
+      (employee) => `
+        <div class="print-legend-item">
+          <span class="print-swatch" style="background:${employee.color || "#2563eb"}"></span>
+          <span>${escapeHtml(employee.name)}</span>
+        </div>
+      `
+    )
+    .join("");
+
+  $("#printView").innerHTML = [
+    renderPrintHalfYearPage("Januar bis Juni", range(0, 5), yearVacations, employeeById, legend),
+    renderPrintHalfYearPage("Juli bis Dezember", range(6, 11), yearVacations, employeeById, legend)
+  ].join("");
+}
+
+function renderPrintHalfYearPage(title, months, vacations, employeeById, legend) {
+  return `
+    <section class="print-page print-half-year-page">
+      <div class="print-header">
+        <img class="print-logo" src="/assets/wortmarke.png" alt="Pfarrei St. Wendelin Allenwinden">
+        <div class="print-title">
+          <h1>Ferienplan ${state.year}</h1>
+          <strong>${title}</strong>
+        </div>
+        <div class="print-meta">Baar<br>${new Date().toLocaleDateString("de-CH")}</div>
+      </div>
+
+      <div class="print-half-year-grid">
+        ${months.map((monthIndex) => renderPrintMonth(monthIndex, vacations, employeeById)).join("")}
+      </div>
+
+      <div class="print-legend">
+        ${legend}
+        <div class="print-legend-item"><span class="print-swatch holiday"></span><span>gesetzlicher Feiertag</span></div>
+        <div class="print-legend-item"><span class="print-swatch holiday-like"></span><span>feiertagsähnlicher Tag</span></div>
+        <div class="print-legend-item"><span class="print-swatch conflict"></span><span>Überschneidung</span></div>
+      </div>
+    </section>
+  `;
 }
 
 function withinPeriod(vacation) {

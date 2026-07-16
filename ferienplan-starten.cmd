@@ -1,6 +1,6 @@
 @echo off
 set "APP_DIR=%~dp0"
-set "APP_URL=http://127.0.0.1:3000/?v=6"
+set "APP_URL=http://127.0.0.1:3000/?v=7"
 
 powershell -NoProfile -ExecutionPolicy Bypass -Command ^
   "$url = 'http://127.0.0.1:3000/api/public';" ^

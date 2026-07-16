@@ -385,6 +385,12 @@ button.danger {
   gap: 14px;
 }
 
+.planner-workspace {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
 .month {
   overflow: hidden;
   box-shadow: none;
@@ -615,7 +621,7 @@ button.danger {
 
   .sidebar-nav {
     flex: 1 1 420px;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .sidebar-footer {
@@ -720,7 +726,7 @@ button.danger {
   }
 
   .print-logo {
-    width: 64mm;
+    width: 56mm;
     height: auto;
   }
 
@@ -751,10 +757,18 @@ button.danger {
     font-weight: 700;
   }
 
-  .print-year-grid {
+  .print-year-grid,
+  .print-half-year-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 3.2mm;
+  }
+
+  .print-year-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .print-half-year-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .print-month {
@@ -796,7 +810,7 @@ button.danger {
   }
 
   .print-day {
-    min-height: 7.2mm;
+    min-height: 7.6mm;
     padding: 0.7mm;
     background: white;
     position: relative;

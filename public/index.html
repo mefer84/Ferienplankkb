@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Ferienplan Baar</title>
     <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="stylesheet" href="/styles.css?v=6" />
+    <link rel="stylesheet" href="/styles.css?v=7" />
   </head>
   <body>
     <div class="app-frame">
@@ -19,8 +19,7 @@
         </div>
 
         <nav class="tabs sidebar-nav" aria-label="Ansichten">
-          <button class="tab active" data-tab="plan" data-title="Plan">Plan</button>
-          <button class="tab" data-tab="entries" data-title="Ferien">Ferien</button>
+          <button class="tab active" data-tab="plan" data-title="Ferienplan">Ferienplan</button>
           <button class="tab admin-only" data-tab="employees" data-title="Mitarbeitende">Mitarbeitende</button>
           <button class="tab admin-only" data-tab="settings" data-title="Einstellungen">Einstellungen</button>
         </nav>
@@ -88,47 +87,46 @@
               </div>
             </div>
             <div id="calendar" class="calendar"></div>
-          </section>
+            <div class="planner-workspace">
+              <div class="work-grid">
+                <form id="vacationForm" class="tool-card">
+                  <span class="section-label">Eintrag</span>
+                  <h2>Ferien eintragen</h2>
+                  <label class="field admin-only">
+                    <span>Mitarbeiter</span>
+                    <select id="vacationEmployee"></select>
+                  </label>
+                  <div class="date-grid">
+                    <label class="field">
+                      <span>Von</span>
+                      <input id="vacationStart" type="date" required />
+                    </label>
+                    <label class="field">
+                      <span>Bis</span>
+                      <input id="vacationEnd" type="date" required />
+                    </label>
+                  </div>
+                  <label class="field">
+                    <span>Notiz</span>
+                    <input id="vacationNote" maxlength="160" placeholder="optional" />
+                  </label>
+                  <button class="button primary" type="submit">Eintragen</button>
+                </form>
 
-          <section id="tab-entries" class="tab-view hidden">
-            <div class="work-grid">
-              <form id="vacationForm" class="tool-card">
-                <span class="section-label">Eintrag</span>
-                <h2>Ferien eintragen</h2>
-                <label class="field admin-only">
-                  <span>Mitarbeiter</span>
-                  <select id="vacationEmployee"></select>
-                </label>
-                <div class="date-grid">
-                  <label class="field">
-                    <span>Von</span>
-                    <input id="vacationStart" type="date" required />
-                  </label>
-                  <label class="field">
-                    <span>Bis</span>
-                    <input id="vacationEnd" type="date" required />
-                  </label>
+                <div class="tool-card">
+                  <span class="section-label">Saldo</span>
+                  <h2>Ferientage</h2>
+                  <div id="summaryCards" class="summary-cards"></div>
                 </div>
-                <label class="field">
-                  <span>Notiz</span>
-                  <input id="vacationNote" maxlength="160" placeholder="optional" />
-                </label>
-                <button class="button primary" type="submit">Eintragen</button>
-              </form>
-
-              <div class="tool-card">
-                <span class="section-label">Saldo</span>
-                <h2>Ferientage</h2>
-                <div id="summaryCards" class="summary-cards"></div>
               </div>
-            </div>
 
-            <div class="table-card">
-              <div class="card-title">
-                <span class="section-label">Liste</span>
-                <h2>Ferieneinträge</h2>
+              <div class="table-card">
+                <div class="card-title">
+                  <span class="section-label">Liste</span>
+                  <h2>Ferieneinträge</h2>
+                </div>
+                <div id="vacationList" class="list"></div>
               </div>
-              <div id="vacationList" class="list"></div>
             </div>
           </section>
 
@@ -190,6 +188,6 @@
     <section id="printView" class="print-view"></section>
     <div id="toast" class="toast" role="status"></div>
 
-    <script src="/app.js?v=6" defer></script>
+    <script src="/app.js?v=7" defer></script>
   </body>
 </html>
