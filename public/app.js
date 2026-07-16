@@ -539,7 +539,7 @@ function buildPrintView() {
         <h1>${escapeHtml(state.data.settings.companyName)}</h1>
         <strong>Ferienübersicht ${state.year} · ${periodLabel}</strong>
       </div>
-      <div>Baar<br>${new Date().toLocaleDateString("de-CH")}</div>
+      <div>${new Date().toLocaleDateString("de-CH")}</div>
     </div>
     <table class="print-table">
       <thead>
@@ -601,7 +601,7 @@ function buildPrintView() {
           <h1>Ferienplan ${state.year}</h1>
           <strong>Jahresübersicht mit Ferien, Feiertagen und Überschneidungen</strong>
         </div>
-        <div class="print-meta">Baar<br>${new Date().toLocaleDateString("de-CH")}</div>
+        <div class="print-meta">${new Date().toLocaleDateString("de-CH")}</div>
       </div>
 
       <div class="print-year-grid">
@@ -623,7 +623,7 @@ function buildPrintView() {
           <h1>Ferienübersicht ${state.year}</h1>
           <strong>Saldo und Detaildaten</strong>
         </div>
-        <div class="print-meta">Baar<br>${new Date().toLocaleDateString("de-CH")}</div>
+        <div class="print-meta">${new Date().toLocaleDateString("de-CH")}</div>
       </div>
       <table class="print-table">
         <thead>
@@ -747,7 +747,7 @@ function renderPrintHalfYearPage(title, months, vacations, employeeById, legend)
           <h1>Ferienplan ${state.year}</h1>
           <strong>${title}</strong>
         </div>
-        <div class="print-meta">Baar<br>${new Date().toLocaleDateString("de-CH")}</div>
+        <div class="print-meta">${new Date().toLocaleDateString("de-CH")}</div>
       </div>
 
       <div class="print-half-year-grid">

@@ -1,4 +1,4 @@
-# Ferienplan Baar
+# Ferienplan
 
 Ein sehr einfacher webbasierter Ferienplan für Mitarbeitende und Admin.
 
@@ -30,7 +30,7 @@ Bitte im Admin-Bereich danach ein eigenes Passwort setzen.
 - Übertrag wird bis 31. März zuerst verbraucht.
 - Mitarbeitende loggen sich mit ihrem persönlichen Code ein und tragen Ferien ein.
 - Überschneidungen werden im Kalender rot markiert und dem Admin als Warnung angezeigt.
-- Feiertage für Baar werden automatisch berücksichtigt.
+- Feiertage werden automatisch berücksichtigt.
 - Feiertagsähnliche Tage können im Admin-Bereich ein- oder ausgeschaltet werden.
 - PDF-Ausgabe über den Button `Drucken`, danach im Browser `Als PDF speichern` wählen.
 - Ganzjahres-, 1.-Halbjahr- und 2.-Halbjahr-Ansicht.
@@ -45,9 +45,9 @@ data/ferienplan.json
 
 Der Ordner `data/` ist absichtlich in `.gitignore`, weil dort echte Personaldaten und Passwortdaten liegen.
 
-## Feiertage Baar
+## Feiertage
 
-Die gesetzlichen Feiertage orientieren sich an der offiziellen kantonalen Feiertagsliste für Baar. Berchtoldstag, Ostermontag, Pfingstmontag und Stefanstag sind feiertagsähnliche Tage; die App kann sie optional als freie Tage zählen.
+Die gesetzlichen Feiertage orientieren sich an der offiziellen kantonalen Feiertagsliste. Berchtoldstag, Ostermontag, Pfingstmontag und Stefanstag sind feiertagsähnliche Tage; die App kann sie optional als freie Tage zählen.
 
 ## Internet-Betrieb
 
