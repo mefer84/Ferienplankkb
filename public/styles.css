@@ -641,12 +641,35 @@ button.danger {
 }
 
 @media (max-width: 720px) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
   .main-stage {
-    padding: 16px;
+    padding: 12px;
   }
 
   .sidebar {
-    padding: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 15;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 12px;
+    box-shadow: 0 10px 28px rgba(24, 52, 88, 0.12);
+  }
+
+  .brand-block {
+    align-items: center;
+  }
+
+  .brand-logo {
+    width: 92px;
+  }
+
+  .brand-block strong {
+    font-size: 1rem;
   }
 
   .sidebar-nav,
@@ -657,9 +680,63 @@ button.danger {
     grid-template-columns: 1fr;
   }
 
+  .sidebar-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
+    gap: 6px;
+  }
+
+  .tab {
+    min-height: 44px;
+    padding: 0.68rem 0.75rem;
+    text-align: center;
+  }
+
+  .sidebar-footer {
+    display: grid;
+    grid-template-columns: minmax(92px, 0.8fr) minmax(130px, 1fr);
+    gap: 8px;
+    align-items: end;
+  }
+
+  .app-header {
+    min-height: auto;
+    margin-bottom: 12px;
+  }
+
+  .app-header h1 {
+    font-size: 1.75rem;
+  }
+
   .auth-screen {
     min-height: auto;
     align-content: start;
+  }
+
+  .auth-card,
+  .tool-card,
+  .table-card,
+  .today-panel,
+  .stat-card {
+    padding: 14px;
+  }
+
+  .dashboard-strip,
+  .workspace {
+    gap: 10px;
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .stat-card {
+    min-height: 88px;
+  }
+
+  .stat-card strong {
+    font-size: 1.45rem;
   }
 
   .app-header,
@@ -670,9 +747,65 @@ button.danger {
     display: flex;
   }
 
+  #tab-plan {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  #tab-plan.hidden {
+    display: none !important;
+  }
+
+  .planner-workspace {
+    order: 1;
+    margin-top: 0;
+  }
+
+  .viewbar {
+    order: 2;
+  }
+
+  .calendar {
+    order: 3;
+    grid-template-columns: 1fr;
+  }
+
   .segmented {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .period,
+  .button,
+  .field input,
+  .field select {
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .month h3 {
+    padding: 10px 12px;
+  }
+
+  .day {
+    min-height: 46px;
+  }
+
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .row-actions {
+    justify-content: stretch;
+  }
+
+  .row-actions button {
+    flex: 1 1 auto;
   }
 }
 
