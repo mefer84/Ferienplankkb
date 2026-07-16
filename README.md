@@ -30,7 +30,7 @@ Bitte im Admin-Bereich danach ein eigenes Passwort setzen.
 - Uebertrag wird bis 31. Maerz zuerst verbraucht.
 - Mitarbeitende loggen sich mit ihrem persoenlichen Code ein und tragen Ferien ein.
 - Ueberschneidungen werden im Kalender rot markiert und dem Admin als Warnung angezeigt.
-- Zuger Feiertage fuer Baar werden automatisch beruecksichtigt.
+- Feiertage fuer Baar werden automatisch beruecksichtigt.
 - Feiertagsaehnliche Tage koennen im Admin-Bereich ein- oder ausgeschaltet werden.
 - PDF-Ausgabe ueber den Button `Drucken`, danach im Browser `Als PDF speichern` waehlen.
 - Ganzjahres-, 1.-Halbjahr- und 2.-Halbjahr-Ansicht.
@@ -45,9 +45,9 @@ data/ferienplan.json
 
 Der Ordner `data/` ist absichtlich in `.gitignore`, weil dort echte Personaldaten und Passwortdaten liegen.
 
-## Feiertage Zug/Baar
+## Feiertage Baar
 
-Die gesetzlichen Feiertage orientieren sich an der offiziellen Liste des Kantons Zug. Berchtoldstag, Ostermontag, Pfingstmontag und Stefanstag sind im Kanton Zug feiertagsaehnliche Tage; die App kann sie optional als freie Tage zaehlen.
+Die gesetzlichen Feiertage orientieren sich an der offiziellen kantonalen Feiertagsliste fuer Baar. Berchtoldstag, Ostermontag, Pfingstmontag und Stefanstag sind feiertagsaehnliche Tage; die App kann sie optional als freie Tage zaehlen.
 
 ## Internet-Betrieb
 

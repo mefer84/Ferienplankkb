@@ -539,7 +539,7 @@ function buildPrintView() {
         <h1>${escapeHtml(state.data.settings.companyName)}</h1>
         <strong>Ferienuebersicht ${state.year} · ${periodLabel}</strong>
       </div>
-      <div>Baar/ZG<br>${new Date().toLocaleDateString("de-CH")}</div>
+      <div>Baar<br>${new Date().toLocaleDateString("de-CH")}</div>
     </div>
     <table class="print-table">
       <thead>
@@ -601,7 +601,7 @@ function buildPrintView() {
           <h1>Ferienplan ${state.year}</h1>
           <strong>Jahresuebersicht mit Ferien, Feiertagen und Ueberschneidungen</strong>
         </div>
-        <div class="print-meta">Baar/ZG<br>${new Date().toLocaleDateString("de-CH")}</div>
+        <div class="print-meta">Baar<br>${new Date().toLocaleDateString("de-CH")}</div>
       </div>
 
       <div class="print-year-grid">
@@ -623,7 +623,7 @@ function buildPrintView() {
           <h1>Ferienuebersicht ${state.year}</h1>
           <strong>Saldo und Detaildaten</strong>
         </div>
-        <div class="print-meta">Baar/ZG<br>${new Date().toLocaleDateString("de-CH")}</div>
+        <div class="print-meta">Baar<br>${new Date().toLocaleDateString("de-CH")}</div>
       </div>
       <table class="print-table">
         <thead>
